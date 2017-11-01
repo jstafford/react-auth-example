@@ -77,8 +77,6 @@ class SignUpPage extends Component<{
     const {user} = this.state
     const {name, value} = event.target
     user[name] = value
-      ? value.trim()
-      : ''
     this.setState({user})
   }
 
