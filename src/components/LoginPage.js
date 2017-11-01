@@ -1,9 +1,12 @@
 import React, {Component} from 'react'
 import {Link, Redirect} from 'react-router-dom'
-import {Card, CardText} from 'material-ui/Card'
+import {CardText} from 'material-ui/Card'
 import RaisedButton from 'material-ui/RaisedButton'
 import TextField from 'material-ui/TextField'
 import auth from '../modules/auth'
+import CardContainer from './CardContainer'
+import CardHeading from './CardHeading'
+import FormLine from './FormLine'
 
 class LoginPage extends Component<{
   fromPathname: string
@@ -57,7 +60,7 @@ class LoginPage extends Component<{
     xhr.responseType = 'json'
     xhr.addEventListener('load', () => {
       if (xhr.status === 200) {
-        // success change the component-container state
+        // success change the state
         this.setState({errors: {}})
 
         // save the token
@@ -104,23 +107,33 @@ class LoginPage extends Component<{
       )
     }
     return (
-      <Card className='container'>
+      <CardContainer>
         <form action='/' onSubmit={this.onSubmit}>
-          <h2 className='card-heading'>Login</h2>
+          <CardHeading>Login</CardHeading>
 
-          {successMessage && <p className='success-message'>{successMessage}</p>}
-          {errors.summary && <p className='error-message'>{errors.summary}</p>}
+          {successMessage &&
+            <p style={{
+                color: 'green',
+                padding: '0 16px',
+              }}>{successMessage}</p>
+          }
+          {errors.summary &&
+            <p style={{
+                color: 'tomato',
+                padding: '0 16px',
+              }}>{errors.summary}</p>
+          }
 
-          <div className='field-line'>
+          <FormLine>
             <TextField
               floatingLabelText='Email'
               name='email'
               errorText={errors.email}
               onChange={this.onChange}
               value={user.email}/>
-          </div>
+          </FormLine>
 
-          <div className='field-line'>
+          <FormLine>
             <TextField
               floatingLabelText='Password'
               type='password'
@@ -128,15 +141,15 @@ class LoginPage extends Component<{
               onChange={this.onChange}
               errorText={errors.password}
               value={user.password}/>
-          </div>
+          </FormLine>
 
-          <div className='button-line'>
+          <FormLine>
             <RaisedButton type='submit' label='Log in' primary />
-          </div>
+          </FormLine>
 
           <CardText>Don’t have an account? <Link to={'/signup'}>Create one</Link>.</CardText>
         </form>
-      </Card>
+      </CardContainer>
     )
   }
 

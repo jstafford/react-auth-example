@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import auth from '../modules/auth'
-import {Card, CardTitle, CardText} from 'material-ui/Card'
+import {CardTitle, CardText} from 'material-ui/Card'
+import CardContainer from './CardContainer'
 
 class HomePage extends Component < {} > {
   state = {
@@ -36,7 +37,7 @@ class HomePage extends Component < {} > {
     const loggedIn = auth.isUserAuthenticated()
     const loggedOut = !loggedIn
     return (
-      <Card className='container'>
+      <CardContainer>
         {
           loggedIn && <CardTitle
               title='Dashboard'
@@ -55,7 +56,7 @@ class HomePage extends Component < {} > {
               }}>{secretData}</CardText>
         }
         <CardText><Link to='/public'>Public Page</Link>&emsp;&emsp;&emsp;<Link to='/protected'>Protected Page</Link></CardText>
-      </Card>
+      </CardContainer>
     )
   }
 }

@@ -7,7 +7,6 @@ import LoginPage from './LoginPage'
 import ProtectedPage from './ProtectedPage'
 import PublicPage from './PublicPage'
 import SignUpPage from './SignUpPage'
-import './style.css'
 
 class App extends Component {
   render() {

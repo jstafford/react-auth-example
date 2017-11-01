@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import {Redirect} from 'react-router-dom'
-import {Card, CardTitle} from 'material-ui/Card'
+import {CardTitle} from 'material-ui/Card'
 import auth from '../modules/auth'
+import CardContainer from './CardContainer'
 
 class ProtectedPage extends Component < {} > {
 
@@ -18,11 +19,12 @@ class ProtectedPage extends Component < {} > {
     }
 
     return (
-      <Card className='container'>
+      <CardContainer>
         <CardTitle
-            title='Protected Page'
-            subtitle='This page is only accessible once you have logged in.'/>
-      </Card>
+          title='Protected Page'
+          subtitle='This page now accessible since you are logged in.'
+        />
+      </CardContainer>
     )
   }
 }

@@ -8,7 +8,10 @@ class Base extends Component<{}> {
     const {children} = this.props
     const loggedIn = auth.isUserAuthenticated()
     return (
-      <div>
+      <div style={{
+        fontSize: '16px',
+        margin: 0,
+      }}>
         <AppBar
           title=''
           iconElementLeft={<Link to='/'>React Auth Example</Link>}

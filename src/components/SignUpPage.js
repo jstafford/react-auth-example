@@ -1,8 +1,11 @@
 import React, {Component} from 'react'
 import {Link, Redirect} from 'react-router-dom'
-import {Card, CardText} from 'material-ui/Card'
+import {CardText} from 'material-ui/Card'
 import RaisedButton from 'material-ui/RaisedButton'
 import TextField from 'material-ui/TextField'
+import CardContainer from './CardContainer'
+import CardHeading from './CardHeading'
+import FormLine from './FormLine'
 
 class SignUpPage extends Component<{
   fromPathname: string
@@ -45,7 +48,7 @@ class SignUpPage extends Component<{
     xhr.responseType = 'json'
     xhr.addEventListener('load', () => {
       if (xhr.status === 200) {
-        // success change the component-container state
+        // success change the state
         this.setState({errors: {}})
 
         // set a message
@@ -92,31 +95,34 @@ class SignUpPage extends Component<{
     }
 
     return (
-      <Card className='container'>
+      <CardContainer>
         <form action='/' onSubmit={this.onSubmit}>
-          <h2 className='card-heading'>Sign Up</h2>
+          <CardHeading>Sign Up</CardHeading>
 
-          {errors.summary && <p className='error-message'>{errors.summary}</p>}
+          {errors.summary && <p style={{
+              color: 'tomato',
+              padding: '0 16px',
+            }}>{errors.summary}</p>}
 
-          <div className='field-line'>
+          <FormLine>
             <TextField
               floatingLabelText='Name'
               name='name'
               errorText={errors.name}
               onChange={this.onChange}
               value={user.name}/>
-          </div>
+          </FormLine>
 
-          <div className='field-line'>
+          <FormLine>
             <TextField
               floatingLabelText='Email'
               name='email'
               errorText={errors.email}
               onChange={this.onChange}
               value={user.email}/>
-          </div>
+          </FormLine>
 
-          <div className='field-line'>
+          <FormLine>
             <TextField
               floatingLabelText='Password'
               type='password'
@@ -124,19 +130,19 @@ class SignUpPage extends Component<{
               onChange={this.onChange}
               errorText={errors.password}
               value={user.password}/>
-          </div>
+          </FormLine>
 
-          <div className='button-line'>
+          <FormLine>
             <RaisedButton
               type='submit'
               label='Create New Account'
               primary />
-          </div>
+          </FormLine>
 
           <CardText>Already have an account? <Link to={'/login'}>Log in</Link>
           </CardText>
         </form>
-      </Card>
+      </CardContainer>
     )
   }
 
