@@ -5,7 +5,9 @@ import RaisedButton from 'material-ui/RaisedButton'
 import TextField from 'material-ui/TextField'
 import auth from '../modules/auth'
 
-class LoginPage extends Component {
+class LoginPage extends Component<{
+  fromPathname: string
+}> {
 
   // set the initial component state
   state = {
@@ -93,13 +95,12 @@ class LoginPage extends Component {
    * Render the component.
    */
   render() {
-    const {errors, successMessage, user} = this.state
-    const {from} = this.props.location.state || { from: { pathname: '/' } }
-    const {redirectToReferrer} = this.state
+    const {errors, successMessage, redirectToReferrer, user} = this.state
+    const {fromPathname} = this.props.location.state || { fromPathname: '/' }
 
     if (redirectToReferrer) {
       return (
-        <Redirect to={from}/>
+        <Redirect to={fromPathname}/>
       )
     }
     return (

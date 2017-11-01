@@ -1,14 +1,17 @@
 import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 import {Card, CardText} from 'material-ui/Card'
 import RaisedButton from 'material-ui/RaisedButton'
 import TextField from 'material-ui/TextField'
 
-class SignUpPage extends Component {
+class SignUpPage extends Component<{
+  fromPathname: string
+}> {
 
   // set the initial component state
   state = {
     errors: {},
+    redirectToLogin: false,
     user: {
       email: '',
       name: '',
@@ -49,22 +52,14 @@ class SignUpPage extends Component {
         localStorage.setItem('successMessage', xhr.response.message)
 
         // make a redirect
-        this
-          .context
-          .router
-          .replace('/login')
+        this.setState({ redirectToLogin: true })
       } else {
         // failure
-
         const errors = xhr.response.errors
           ? xhr.response.errors
           : {}
-        errors.summary = xhr
-          .response
-          .message
-
-          this
-          .setState({errors})
+        errors.summary = xhr.response.message
+        this.setState({errors})
       }
     })
     xhr.send(formData)
@@ -88,7 +83,14 @@ class SignUpPage extends Component {
    * Render the component.
    */
   render() {
-    const {errors, user} = this.state
+    const {errors, redirectToLogin, user} = this.state
+
+    if (redirectToLogin) {
+      return (
+        <Redirect to={'/login'}/>
+      )
+    }
+
     return (
       <Card className='container'>
         <form action='/' onSubmit={this.onSubmit}>

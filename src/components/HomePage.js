@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
 import auth from '../modules/auth'
 import {Card, CardTitle, CardText} from 'material-ui/Card'
 
@@ -53,6 +54,7 @@ class HomePage extends Component < {} > {
                 color: 'green'
               }}>{secretData}</CardText>
         }
+        <CardText><Link to='/public'>Public Page</Link>&emsp;&emsp;&emsp;<Link to='/protected'>Protected Page</Link></CardText>
       </Card>
     )
   }

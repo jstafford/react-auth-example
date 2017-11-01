@@ -4,6 +4,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Base from './Base'
 import HomePage from './HomePage'
 import LoginPage from './LoginPage'
+import ProtectedPage from './ProtectedPage'
+import PublicPage from './PublicPage'
 import SignUpPage from './SignUpPage'
 import './style.css'
 
@@ -16,6 +18,8 @@ class App extends Component {
             <Switch>
               <Route exact={true} path='/' component={HomePage}/>
               <Route path='/login' component={LoginPage}/>
+              <Route path='/protected' component={ProtectedPage}/>
+              <Route path='/public' component={PublicPage}/>
               <Route path='/signup' component={SignUpPage}/>
             </Switch>
           </Base>
