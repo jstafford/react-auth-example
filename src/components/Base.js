@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
-import AppBar from 'material-ui/AppBar';
+import AppBar from 'material-ui/AppBar'
 import auth from '../modules/auth'
 
 class Base extends Component<{}> {
